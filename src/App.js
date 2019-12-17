@@ -14,8 +14,6 @@ import './App.css'
 import { motion as m } from 'framer-motion'
 
 const App = () => {
-
-
   const [aboutClosed, setAboutClosed] = useState(false)
 
   const [videoCallMeClosed, setVideoCallMeClosed] = useState(false)
@@ -42,6 +40,7 @@ const App = () => {
         <Folder name={'lena'} onClick={() => setLenaClosed(false)} />
       </FolderContainer>
 
+
       <About close={aboutClosed} setClose={setAboutClosed}/>
 
       <VideoCallMe close={videoCallMeClosed} setClose={setVideoCallMeClosed} />
@@ -49,7 +48,6 @@ const App = () => {
       <Video close={videoClosed} setClose={setVideoClosed} />
 
       <Lena close={lenaClosed} setClose={setLenaClosed} />
-
     </Page>
   )
 }
@@ -57,7 +55,7 @@ const App = () => {
 const TrashCanContainer = styled(m.button)`
   position: absolute;
   bottom: 10vh;
-  right: 0;
+  right: 32px;
   text-align: center;
   font-family: sans-serif;
   background: transparent;
@@ -69,7 +67,7 @@ const TrashCanContainer = styled(m.button)`
 const FolderContainer = styled.div`
   position: absolute;
   top: 64px;
-  right: 0;
+  right: 32px;
 `
 const Page = styled.div`
   margin: 8px;
