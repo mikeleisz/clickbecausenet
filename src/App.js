@@ -2,10 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { About } from './About'
 
-import { VideoCallMe } from './VideoCallMe'
-import { VideoSingles } from './VideoSingles'
+import { VideoReel } from './VideoReel'
 import { Video } from './Video'
-
 
 import { Folder } from './Folder'
 import { Trashcan } from './TrashCan'
@@ -16,8 +14,7 @@ import { motion as m } from 'framer-motion'
 const App = () => {
   const [aboutClosed, setAboutClosed] = useState(false)
 
-  const [videoCallMeClosed, setVideoCallMeClosed] = useState(false)
-  const [videoSinglesClosed, setVideoSinglesClosed] = useState(false)
+  const [videoReelClosed, setVideoReelClosed] = useState(false)
   const [videoClosed, setVideoClosed] = useState(false)
 
   const [lenaClosed, setLenaClosed] = useState(false)
@@ -33,8 +30,7 @@ const App = () => {
       <FolderContainer>
         <Folder name={'about'} onClick={() => setAboutClosed(false)} />
 
-        <Folder name={'callMe.mp4'} onClick={() => setVideoCallMeClosed(false)} />
-        <Folder name={'5000singles.mp4'} onClick={() => setVideoSinglesClosed(false)} />
+        <Folder name={'audioreact.mp4'} onClick={() => setVideoClosed(false)} />
         <Folder name={'inefcoupe.mp4'} onClick={() => setVideoClosed(false)} />
 
         <Folder name={'lena'} onClick={() => setLenaClosed(false)} />
@@ -43,8 +39,7 @@ const App = () => {
 
       <About close={aboutClosed} setClose={setAboutClosed}/>
 
-      <VideoCallMe close={videoCallMeClosed} setClose={setVideoCallMeClosed} />
-      <VideoSingles close={videoSinglesClosed} setClose={setVideoSinglesClosed} />
+      <VideoReel close={videoReelClosed} setClose={setVideoReelClosed} />
       <Video close={videoClosed} setClose={setVideoClosed} />
 
       <Lena close={lenaClosed} setClose={setLenaClosed} />
