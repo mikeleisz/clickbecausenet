@@ -4,12 +4,16 @@ import { About } from './About'
 import { Video } from './Video'
 import { Folder } from './Folder'
 import { Trashcan } from './TrashCan'
+import { Lena } from './Lena'
 import './App.css'
 import { motion as m } from 'framer-motion'
 
 const App = () => {
-  const [showVideo, setShowVideo] = useState(true)
-  const [showAbout, setShowAbout] = useState(true)
+
+
+  const [aboutClosed, setAboutClosed] = useState(false)
+  const [videoClosed, setVideoClosed] = useState(false)
+  const [lenaClosed, setLenaClosed] = useState(false)
 
   return (
     <Page>
@@ -19,11 +23,15 @@ const App = () => {
         <p>important files</p>
       </TrashCanContainer>
       <FolderContainer>
-        <Folder name={'reel'} onClick={() => setShowVideo(true)} />
-        <Folder name={'about'} onClick={() => setShowAbout(true)} />
+        <Folder name={'reel'} onClick={() => setVideoClosed(false)} />
+        <Folder name={'about'} onClick={() => setAboutClosed(false)} />
+        <Folder name={'lena'} onClick={() => setLenaClosed(false)} />
       </FolderContainer>
-      {showAbout && <About onClose={() => setShowAbout(false)} />}
-      {showVideo && <Video onClose={() => setShowVideo(false)} />}
+
+      <About close={aboutClosed} setClose={setAboutClosed}/>
+      <Video close={videoClosed} setClose={setVideoClosed} />
+      <Lena close={lenaClosed} setClose={setLenaClosed} />
+
     </Page>
   )
 }

@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Window } from './Window'
 
-const Video = ({ onClose }) => {
+const Video = ({ setClose, close }) => {
   return (
-    <Window title={"reel"} onClose={onClose} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
+    <Window title={"reel"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
       <EmbedContainer>
         <iframe
           src="https://player.vimeo.com/video/318686868"

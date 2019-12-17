@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
 
-const Window = ({ children, style, onClose, title }) => {
+const Window = ({ children, style, setClose, close, title, containerStyle }) => {
   const [minimised, setMinimised] = useState(false)
   const [maximised, setMaximised] = useState(false)
-
   return (
     <WindowContainer
       drag
       dragMomentum={false}
       className={maximised ? 'maximised' : ''}
       animate={{
-        scale: maximised ? 1.25 : 1
+        scale: close ? 0 : maximised ? 1.25 : 1
       }}
+      style={containerStyle}
+
+
     >
       <TopBar>
         <WindowTitle>{title}</WindowTitle>
@@ -24,14 +26,14 @@ const Window = ({ children, style, onClose, title }) => {
           }}
         />
         <Minimise onClick={() => setMinimised(!minimised)} />
-        <Close onClick={onClose} />
+        <Close onClick={() => setClose(true)} />
       </TopBar>
-      {!minimised && <WindowContent style={style}>{children}</WindowContent>}
+      <WindowContent style={{...style, display: minimised ? "none" : "block"}}> {children}</WindowContent>
     </WindowContainer>
   )
 }
 
-const WindowContent = styled.div`
+const WindowContent = styled(m.div)`
   padding: 32px 16px;
 `
 
