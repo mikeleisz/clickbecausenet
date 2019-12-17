@@ -1,21 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
 
 const Window = ({ children, style, setClose, close, title, containerStyle }) => {
   const [minimised, setMinimised] = useState(false)
   const [maximised, setMaximised] = useState(false)
+  const [contentHeight, setContentHeight] = useState(0)
+
+  const contentRef = useRef()
+
+  useEffect(() => {
+    const { height } = contentRef.current.getBoundingClientRect()
+    setContentHeight(height)
+  }, [])
+
+  // useEffect(() => {
+  //   const { top, left } = containerRef.current.getBoundingClientRect()
+  //   console.log(top, left)
+  //   setTimeout(() => {
+  //     containerRef.current.style.left = left + 'px'
+  //     containerRef.current.style.top = top + 'px'
+  //     containerRef.current.style.position = 'absolute'
+  //   }, 500)
+  // }, [])
   return (
     <WindowContainer
       drag
       dragMomentum={false}
       className={maximised ? 'maximised' : ''}
       animate={{
-        scale: close ? 0 : maximised ? 1.25 : 1
+        scale: close ? 0 : maximised ? 1.25 : 1,
+        marginBottom: minimised ? contentHeight : 16,
+        transition: {
+          marginBottom: {
+            duration: 0
+          }
+        }
       }}
       style={containerStyle}
-
-
     >
       <TopBar>
         <WindowTitle>{title}</WindowTitle>
@@ -28,7 +50,9 @@ const Window = ({ children, style, setClose, close, title, containerStyle }) => 
         <Minimise onClick={() => setMinimised(!minimised)} />
         <Close onClick={() => setClose(true)} />
       </TopBar>
-      <WindowContent style={{...style, display: minimised ? "none" : "block"}}> {children}</WindowContent>
+      <WindowContent ref={contentRef} style={{ ...style, display: minimised ? 'none' : 'block' }}>
+        {children}
+      </WindowContent>
     </WindowContainer>
   )
 }
