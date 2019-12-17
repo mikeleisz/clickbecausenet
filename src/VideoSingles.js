@@ -2,25 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 import { Window } from './Window'
 
-const Video = ({ setClose, close }) => {
+const VideoSingles = ({ setClose, close }) => {
   return (
-    <Window title={"inefcoupe.mp4"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
+    <Window title={"5000singles.mp4"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
       <EmbedContainer>
         <iframe
-          src="https://player.vimeo.com/video/318686868"
+          src="https://player.vimeo.com/video/380068801"
           frameborder="0"
           webkitAllowFullScreen
           mozallowfullscreen
           allowFullScreen
-          width="640"
-          height="640"
         ></iframe>
       </EmbedContainer>
     </Window>
   )
 }
 
-export { Video }
+export { VideoSingles }
 
 const EmbedContainer = styled.div`
   position: relative;

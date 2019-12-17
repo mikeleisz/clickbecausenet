@@ -27,6 +27,8 @@ const Btn = styled(m.button)`
   flex-direction: column;
   align-items: center;
 
+  margin-right: 16px;
+
   &:hover {
     outline: none;
   }
