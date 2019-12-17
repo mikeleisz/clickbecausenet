@@ -4,7 +4,7 @@ import { Window } from './Window'
 
 const Video = ({ setClose, close }) => {
   return (
-    <Window title={"inefcoupe.mp4"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
+    <Window title={"inefcoupe.mov"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
       <EmbedContainer>
         <iframe
           src="https://player.vimeo.com/video/318686868"

@@ -30,10 +30,10 @@ const App = () => {
       <FolderContainer>
         <Folder name={'about'} onClick={() => setAboutClosed(false)} />
 
-        <Folder name={'audioreact.mp4'} onClick={() => setVideoClosed(false)} />
-        <Folder name={'inefcoupe.mp4'} onClick={() => setVideoClosed(false)} />
+        <Folder name={'audioreact.mov'} onClick={() => setVideoClosed(false)} />
+        <Folder name={'inefcoupe.mov'} onClick={() => setVideoClosed(false)} />
 
-        <Folder name={'lena'} onClick={() => setLenaClosed(false)} />
+        <Folder name={'lena.jpg'} onClick={() => setLenaClosed(false)} />
       </FolderContainer>
 
 

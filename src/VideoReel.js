@@ -4,7 +4,7 @@ import { Window } from './Window'
 
 const VideoReel = ({ setClose, close }) => {
   return (
-    <Window title={"audioReact.mp4"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
+    <Window title={"audioreact.mov"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
       <EmbedContainer>
         <iframe
           src="https://player.vimeo.com/video/380100983"
