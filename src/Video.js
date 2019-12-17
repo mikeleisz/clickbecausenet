@@ -7,7 +7,7 @@ const Video = ({ onClose }) => {
     <Window title={"reel"} onClose={onClose} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
       <EmbedContainer>
         <iframe
-          src="https://player.vimeo.com/video/269081756"
+          src="https://player.vimeo.com/video/318686868"
           frameborder="0"
           webkitAllowFullScreen
           mozallowfullscreen
