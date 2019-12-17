@@ -6,19 +6,26 @@ function About({ setClose, close }) {
   return (
     <Window title={'about'} close={close} setClose={setClose}>
       <AboutText>
-        <p>i'm mike leisz, a los angeles based artist, educator, and computer graphics programmer.</p>
-        <p>i make live visuals, interactive installations, webGL graphics, and music videos.</p>
-        <p>say hi: clickbecause@gmail.com</p>
+        <p>I'm Mike Leisz, a Los Angeles based artist, educator, and creative developer.</p>
+        <p>With 10+ years experience in digital media, I provide technical direction, creative strategy, software development, and motion design for clients like Getty, Red Bull Music, The City of Los Angeles, and DJ Madeon.</p>
+        <p>I currently teach at Calarts in the Music Technology department.</p>
+        <p>In my spare time, I'm developing an audio reactive videogame for the Nintendo Switch.</p>
+        <br></br>
+        <p>If you'd like to hire me or just say hi: 
+        <a href="mailto:clickbecause@gmail.com?subject=Hi Mike">
+          clickbecause@gmail.com
+        </a></p>
+        <p>If you'd like to see some of my audio reactive visual work: 
         <a href="https://www.instagram.com/clickbecause/" target="_blank">
           @clickbecause
-        </a>
+        </a></p>
       </AboutText>
     </Window>
   )
 }
 
 const AboutText = styled.div`
-  //font-family: monospace;
+  font-family: fairfax;
 `
 
 export { About }

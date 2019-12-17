@@ -75,6 +75,8 @@ const WindowContainer = styled(m.div)`
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
   background: white;
   min-height: 32px;
+
+  margin-left: 8px;
 `
 
 const TopBar = styled.div`

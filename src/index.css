@@ -8,6 +8,11 @@
   src: url(./assets/fonts/Parc_Place.ttf);
 }
 
+@font-face {
+  font-family: fairfax;
+  src: url(./assets/fonts/Fairfax.ttf);
+}
+
 body {
   margin: 0;
   font-family: chicago, monospace;
