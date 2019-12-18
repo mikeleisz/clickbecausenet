@@ -102,7 +102,7 @@ const WindowContainer = styled(m.div)`
   background: white;
   min-height: 32px;
 
-  margin-left: 8px;
+  margin-left: 4px;
 `
 
 const TopBar = styled.div`
