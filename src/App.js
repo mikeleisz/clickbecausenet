@@ -23,9 +23,15 @@ const App = () => {
           <About />
         </File>
 
-        <VideoFile name="audioreact.mov" openOnLoad={true} videoId={380100983} aspect={16 / 9} />
+        <VideoFile name="audioreact.mov" openOnLoad={true} videoId={380100983} aspect={16 / 9} offset={200} />
 
-        <VideoFile name="two_phones.mov" videoId={380071795} aspect={1} width={'50%'} />
+        <VideoFile name="two_phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" />
+        <VideoFile name="500.mov" videoId={380068801} aspect={1} width={'50%'} folder="videos" />
+        <VideoFile name="skittles.mov" videoId={327851438} aspect={16 / 9} width={'70%'} folder="videos" />
+
+        <File name="videos">
+          <FileContainer name="videos" />
+        </File>
       </Page>
     </FileProvider>
   )

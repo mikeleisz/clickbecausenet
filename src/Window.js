@@ -3,28 +3,31 @@ import { FileContext } from './FileContext'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
 
-const Window = ({ close, setClose, children, style, title, containerStyle }) => {
+const Window = ({ close, setClose, children, style, title, containerStyle, offset }) => {
   const [minimised, setMinimised] = useState(false)
   const [maximised, setMaximised] = useState(false)
   const [contentHeight, setContentHeight] = useState(0)
   const [contentWidth, setContentWidth] = useState(0)
   const [dragging, setDragging] = useState(false)
 
-  const { focus, focusedFile } = useContext(FileContext)
+  const { focus, focusedFile, files } = useContext(FileContext)
 
   const contentRef = useRef()
 
   useEffect(() => {
-    const { height, width } = contentRef.current.getBoundingClientRect()
-    setContentHeight(height)
-    setContentWidth(width)
-  }, [])
+    setContentHeight(contentRef.current.offsetHeight)
+    setContentWidth(contentRef.current.offsetWidth)
+  }, [files])
 
   return (
     <WindowContainer
       drag
       dragMomentum={false}
-      className={maximised ? 'maximised' : ''}
+      initial={{
+        x: Math.random() * 50,
+        y: Math.random() * 50 + (offset || 0),
+        scale: 0
+      }}
       animate={{
         scale: close ? 0 : maximised ? 1.25 : 1,
         marginBottom: minimised ? contentHeight : 16,
@@ -107,8 +110,8 @@ const Close = styled(Btn)`
 
 const WindowContainer = styled(m.div)`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 64px;
+  left: 32px;
   border: 2px solid black;
   display: inline-block;
   margin-bottom: 16px;

@@ -18,6 +18,9 @@ const FileContainer = ({ name }) => {
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  display: flex;
+  padding: 32px;
+`
 
 export { FileContainer }
