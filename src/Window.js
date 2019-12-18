@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
+import { FileContext } from './FileContext'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
 
-const Window = ({ children, style, setClose, close, title, containerStyle }) => {
+const Window = ({ close, setClose, children, style, title, containerStyle }) => {
   const [minimised, setMinimised] = useState(false)
   const [maximised, setMaximised] = useState(false)
   const [contentHeight, setContentHeight] = useState(0)
+
+  const { focus, focusedFile } = useContext(FileContext)
 
   const contentRef = useRef()
 
@@ -14,15 +17,6 @@ const Window = ({ children, style, setClose, close, title, containerStyle }) => 
     setContentHeight(height)
   }, [])
 
-  // useEffect(() => {
-  //   const { top, left } = containerRef.current.getBoundingClientRect()
-  //   console.log(top, left)
-  //   setTimeout(() => {
-  //     containerRef.current.style.left = left + 'px'
-  //     containerRef.current.style.top = top + 'px'
-  //     containerRef.current.style.position = 'absolute'
-  //   }, 500)
-  // }, [])
   return (
     <WindowContainer
       drag
@@ -31,12 +25,14 @@ const Window = ({ children, style, setClose, close, title, containerStyle }) => 
       animate={{
         scale: close ? 0 : maximised ? 1.25 : 1,
         marginBottom: minimised ? contentHeight : 16,
+        zIndex: focusedFile == title ? 100 : 1,
         transition: {
           marginBottom: {
             duration: 0
           }
         }
       }}
+      onDragStart={() => focus(title)}
       style={containerStyle}
     >
       <TopBar>
@@ -74,6 +70,7 @@ const Btn = styled.div`
   height: 16px;
   margin: 4px;
   transition: all 0.3s ease-out;
+  flex-shrink: 0;
 
   &:last-of-type {
     margin-right: 12px;
@@ -97,10 +94,12 @@ const Close = styled(Btn)`
 const WindowContainer = styled(m.div)`
   position: relative;
   border: 2px solid black;
+  display: inline-block;
   margin-bottom: 16px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
   background: white;
   min-height: 32px;
+  min-width: 200px;
 
   margin-left: 8px;
 `
