@@ -64,6 +64,8 @@ const WindowContent = styled(m.div)`
 const WindowTitle = styled.div`
   flex-grow: 1;
   text-align: center;
+
+  color: white;
 `
 
 const Btn = styled.div`
@@ -94,7 +96,7 @@ const Close = styled(Btn)`
 
 const WindowContainer = styled(m.div)`
   position: relative;
-  border: 2px solid blue;
+  border: 2px solid black;
   margin-bottom: 16px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
   background: white;
@@ -112,7 +114,7 @@ const TopBar = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background: #aaa;
+  background: black;
   border-bottom: 1px solid black;
 `
 
