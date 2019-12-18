@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FileProvider } from './FileContext'
 import { About } from './About'
@@ -13,6 +13,11 @@ import { motion as m } from 'framer-motion'
 import './App.css'
 
 const App = () => {
+  const [aboutHeight, setAboutHeight] = useState()
+
+  useEffect(() => {
+    console.log('h', aboutHeight)
+  }, [aboutHeight])
   return (
     <FileProvider>
       <Desktop />
@@ -23,16 +28,31 @@ const App = () => {
       <Page>
         <h1>clickbecause.net</h1>
 
-        <File name="about.txt" openOnLoad={true} focusOnLoad={true}>
+        <File setHeight={setAboutHeight} name="about.txt" openOnLoad={true} randomOffset={0} openOrder={3}>
           <About />
         </File>
 
-        <VideoFile name="audioreact.mov" openOnLoad={true} videoId={380100983} aspect={16 / 9} offset={200} />
+        <VideoFile
+          openOrder={1}
+          name="audioreact.mov"
+          openOnLoad={true}
+          videoId={380100983}
+          aspect={16 / 9}
+          offset={aboutHeight + 32}
+          randomOffset={0}
+        />
 
-        <CanvasFile name="lena.jpg" openOnLoad={true} offset={300} width="256px" height="256px" />
-        <CanvasFile name="p555.js" offset={400} width="200px" height="200px" isP5={true} folder="sketches" />
+        <CanvasFile
+          name="lena.jpg"
+          openOnLoad={true}
+          openOrder={2}
+          offset={aboutHeight + 300}
+          width="256px"
+          height="256px"
+        />
+        <CanvasFile name="p555.js" width="200px" height="200px" isP5={true} folder="sketches" />
 
-        <CanvasFile name="threee.js" offset={400} width="200px" height="200px" folder="sketches" />
+        <CanvasFile name="threee.js" width="200px" height="200px" folder="sketches" />
 
         <VideoFile name="two_phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" />
         <VideoFile name="500.mov" videoId={380068801} aspect={1} width={'50%'} folder="videos" />

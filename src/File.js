@@ -2,7 +2,20 @@ import React, { useContext, useState, useEffect, useRef } from 'react'
 import { FileContext } from './FileContext'
 import { Window } from './Window'
 
-const File = ({ children, name, style, containerStyle, folder, openOnLoad, offset, focusOnLoad, onChangeClose }) => {
+const File = ({
+  setHeight,
+  randomOffset,
+  children,
+  name,
+  style,
+  containerStyle,
+  folder,
+  openOnLoad,
+  offset,
+  focusOnLoad,
+  onChangeClose,
+  openOrder
+}) => {
   const [closed, setClosed] = useState(true)
   const { addFile, removeFile } = useContext(FileContext)
 
@@ -16,7 +29,7 @@ const File = ({ children, name, style, containerStyle, folder, openOnLoad, offse
 
   useEffect(() => {
     if (closed && openOnLoad) {
-      timeoutRef.current = setTimeout(() => setClosed(false), focusOnLoad ? 501 : Math.random() * 500)
+      timeoutRef.current = setTimeout(() => setClosed(false), openOrder * 50)
     }
 
     return () => timeoutRef.current && clearTimeout(timeoutRef.current)
@@ -29,12 +42,14 @@ const File = ({ children, name, style, containerStyle, folder, openOnLoad, offse
 
   return (
     <Window
+      setHeight={setHeight}
       close={closed}
       setClose={setClosed}
       title={name}
       style={style}
       containerStyle={containerStyle}
       offset={offset}
+      randomOffset={randomOffset}
     >
       {children}
     </Window>
