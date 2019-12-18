@@ -7,14 +7,17 @@ const Window = ({ close, setClose, children, style, title, containerStyle }) => 
   const [minimised, setMinimised] = useState(false)
   const [maximised, setMaximised] = useState(false)
   const [contentHeight, setContentHeight] = useState(0)
+  const [contentWidth, setContentWidth] = useState(0)
+  const [dragging, setDragging] = useState(false)
 
   const { focus, focusedFile } = useContext(FileContext)
 
   const contentRef = useRef()
 
   useEffect(() => {
-    const { height } = contentRef.current.getBoundingClientRect()
+    const { height, width } = contentRef.current.getBoundingClientRect()
     setContentHeight(height)
+    setContentWidth(width)
   }, [])
 
   return (
@@ -32,10 +35,14 @@ const Window = ({ close, setClose, children, style, title, containerStyle }) => 
           }
         }
       }}
-      onDragStart={() => focus(title)}
-      style={containerStyle}
+      onDragStart={() => {
+        setDragging(true)
+        focus(title)
+      }}
+      onDragEnd={() => setDragging(false)}
+      style={{ ...containerStyle, ...(minimised && { width: contentWidth }) }}
     >
-      <TopBar>
+      <TopBar style={{ width: contentWidth }}>
         <WindowTitle>{title}</WindowTitle>
         <span></span>
         <Maximise
@@ -46,7 +53,14 @@ const Window = ({ close, setClose, children, style, title, containerStyle }) => 
         <Minimise onClick={() => setMinimised(!minimised)} />
         <Close onClick={() => setClose(true)} />
       </TopBar>
-      <WindowContent ref={contentRef} style={{ ...style, display: minimised ? 'none' : 'block' }}>
+      <WindowContent
+        ref={contentRef}
+        style={{
+          ...style,
+          display: minimised ? 'none' : 'block',
+          pointerEvents: dragging || minimised || close ? 'none' : 'all'
+        }}
+      >
         {children}
       </WindowContent>
     </WindowContainer>
@@ -92,7 +106,9 @@ const Close = styled(Btn)`
 `
 
 const WindowContainer = styled(m.div)`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   border: 2px solid black;
   display: inline-block;
   margin-bottom: 16px;

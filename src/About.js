@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Window } from './Window'
 
-function About({ setClose, close }) {
+function About() {
   return (
-    <Window title={'about'} close={close} setClose={setClose}>
       <AboutText>
         <p>I'm Mike Leisz, a Los Angeles based artist, educator, and creative developer.</p>
         <p>With 10+ years experience in digital media, I provide technical direction, creative strategy, software development, and motion design for clients like Getty, Red Bull, The City of Los Angeles, and DJ Madeon.</p>
@@ -19,7 +18,6 @@ function About({ setClose, close }) {
           @clickbecause
         </a></p>
       </AboutText>
-    </Window>
   )
 }
 

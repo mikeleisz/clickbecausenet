@@ -9,6 +9,7 @@ import { Lena } from './Lena'
 import { File } from './File'
 import { Desktop } from './Desktop'
 import { FileContainer } from './FileContainer'
+import { VideoFile } from './VideoFile'
 import './App.css'
 import { motion as m } from 'framer-motion'
 
@@ -18,21 +19,13 @@ const App = () => {
       <Desktop />
       <Page>
         <h1>clickbecause.net</h1>
-        <File name="hello.txt" openOnLoad={true}>
-          <p>Hello?</p>
+        <File name="about.txt" openOnLoad={true}>
+          <About />
         </File>
 
-        <File name="rad.txt" folder="cool_stuff">
-          <p>yupp?</p>
-        </File>
+        <VideoFile name="audioreact.mov" openOnLoad={true} videoId={380100983} aspect={16 / 9} />
 
-        <File name="nah.txt" folder="cool_stuff">
-          <p>nahhhh?</p>
-        </File>
-
-        <File name="cool_stuff">
-          <FileContainer name="cool_stuff" />
-        </File>
+        <VideoFile name="two_phones.mov" videoId={380071795} aspect={1} width={'50%'} />
       </Page>
     </FileProvider>
   )
@@ -56,6 +49,7 @@ const FolderContainer = styled.div`
   right: 32px;
 `
 const Page = styled.div`
+  position: relative;
   margin: 8px;
   max-width: 800px;
 `
