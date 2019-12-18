@@ -10,7 +10,7 @@ const FileContainer = ({ name }) => {
   return (
     <Container ref={containerRef}>
       {files
-        .filter(f => f.folder == name)
+        .filter(f => f.folder === name)
         .map(file => (
           <Folder key={file.name} name={file.name} onClick={() => file.setClosed(false)} boundsRef={containerRef} />
         ))}

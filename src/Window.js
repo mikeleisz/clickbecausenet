@@ -16,13 +16,13 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
   const contentRef = useRef()
 
   useEffect(() => {
-    if (!close) {
+    if (!close || maximised) {
       focus(title)
     }
-  }, [close])
+  }, [close, maximised])
 
   useEffect(() => {
-    if (focusedFile == title) {
+    if (focusedFile === title) {
       setIndex(highIndex)
     }
   }, [title, highIndex, focusedFile])
@@ -58,12 +58,8 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
       style={{ ...containerStyle, ...(minimised && { width: contentWidth }), zIndex: index }}
     >
       <TopBar style={{ width: contentWidth }}>
-        <WindowTitle>{title}</WindowTitle>
-        <Maximise
-          onClick={() => {
-            setMaximised(!maximised)
-          }}
-        />
+        <WindowTitle contentWidth={contentWidth}>{title}</WindowTitle>
+        <Maximise onClick={() => setMaximised(!maximised)} />
         <Minimise onClick={() => setMinimised(!minimised)} />
         <Close onClick={() => setClose(true)} />
       </TopBar>
@@ -86,12 +82,9 @@ const WindowContent = styled(m.div)`
 `
 
 const WindowTitle = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: ${props => (props.contentWidth < 300 ? 'unset' : 'absolute')};
+  flex-grow: 1
   width: 100%;
-  height: 100%;
-  margin-top: 4px;
   text-align: center;
 
   color: white;
@@ -105,13 +98,15 @@ const Btn = styled.div`
   transition: all 0.3s ease-out;
   flex-shrink: 0;
   z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0);
 
   &:last-of-type {
     margin-right: 12px;
   }
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 1);
   }
 `
 

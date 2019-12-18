@@ -1,10 +1,8 @@
-import React, { createContext, useState, useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 
 const FileContext = createContext({})
 
 const FileProvider = ({ children }) => {
-  const [files, setFiles] = useState([])
-
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -18,9 +16,11 @@ const FileProvider = ({ children }) => {
             focusedFile: action.name,
             highIndex: action.name !== state.focusedFile ? state.highIndex + 1 : state.highIndex
           }
+        default:
+          return state
       }
     },
-    { files: [], focusedFile: null, highIndex: 3 }
+    { files: [], focusedFile: 'about.txt', highIndex: 3 }
   )
 
   const exposed = {

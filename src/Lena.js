@@ -1,24 +1,18 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Window } from './Window'
-import { runLossy } from './lossy'
+import { runLossy } from './sketches/lossy'
 
-function Lena ({ setClose, close }){
-	const canvas = useRef()
-	useEffect(() => runLossy(canvas), [])
-	return (
-		<Window title="lena.jpg" close={close} setClose={setClose} containerStyle={{ width: "256px"}} style={{padding: 0, paddingTop: '32px'}}>
-			<Canvas width="256px" height="256px" ref={canvas} id='lossy'></Canvas>
-		</Window>
-	)
+function Lena() {
+  const canvas = useRef()
+  useEffect(() => runLossy(canvas), [])
+  return <Canvas width="256px" height="256px" ref={canvas} id="lossy"></Canvas>
 }
 
-
 const Canvas = styled.canvas`
-	height: 256px;
-	width: 256px;
-	padding: 0;
-	margin: 0;
-
+  height: 256px;
+  width: 256px;
+  padding: 0;
+  margin: 0;
 `
 export { Lena }

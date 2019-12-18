@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Window } from './Window'
 
-const Video = ({ videoId, aspect }) => {
+const Video = ({ videoId, aspect, setIframe }) => {
   return (
     <EmbedContainer invertedAspect={1 / aspect}>
       <iframe
+        id={`video-${videoId}`}
+        title={videoId}
         src={`https://player.vimeo.com/video/${videoId}`}
-        frameborder="0"
-        webkitAllowFullScreen
-        mozallowfullscreen
-        allowFullScreen
+        frameBorder={0}
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        allowFullScreen={true}
       ></iframe>
     </EmbedContainer>
   )

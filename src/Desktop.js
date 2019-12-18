@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FileContext } from './FileContext'
 import { Folder } from './Folder'
@@ -9,7 +9,7 @@ const Desktop = () => {
   return (
     <DesktopContainer>
       {files
-        .filter(f => f.folder == 'desktop')
+        .filter(f => f.folder === 'desktop')
         .map(file => (
           <Folder key={file.name} name={file.name} onClick={() => file.setClosed(false)} />
         ))}

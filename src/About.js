@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Window } from './Window'
 
 function About() {
   return (
@@ -14,7 +13,7 @@ function About() {
           clickbecause@gmail.com
         </a></p>
         <p>My audio reactive visual work: 
-        <a href="https://www.instagram.com/clickbecause/" target="_blank">
+        <a href="https://www.instagram.com/clickbecause/" target="_blank" rel="noopener noreferrer">
           @clickbecause
         </a></p>
       </AboutText>
