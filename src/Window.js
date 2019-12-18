@@ -47,7 +47,6 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
     >
       <TopBar style={{ width: contentWidth }}>
         <WindowTitle>{title}</WindowTitle>
-        <span></span>
         <Maximise
           onClick={() => {
             setMaximised(!maximised)
@@ -75,7 +74,12 @@ const WindowContent = styled(m.div)`
 `
 
 const WindowTitle = styled.div`
-  flex-grow: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: 4px;
   text-align: center;
 
   color: white;
