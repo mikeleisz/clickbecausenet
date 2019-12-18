@@ -20,6 +20,8 @@ const Folder = ({ name, onClick }) => {
 }
 
 const Btn = styled(m.button)`
+  // font-family: fairfax;
+
   background: transparent;
   border: none;
 

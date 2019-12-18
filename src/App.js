@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { About } from './About'
-import { VideoReel } from './VideoReel'
+import { Video } from './Video'
 import { Folder } from './Folder'
 import { Trashcan } from './TrashCan'
 import { Lena } from './Lena'
@@ -10,10 +10,7 @@ import { motion as m } from 'framer-motion'
 
 const App = () => {
   const [aboutClosed, setAboutClosed] = useState(false)
-
-  const [videoReelClosed, setVideoReelClosed] = useState(false)
   const [videoClosed, setVideoClosed] = useState(false)
-
   const [lenaClosed, setLenaClosed] = useState(false)
 
 
@@ -26,13 +23,13 @@ const App = () => {
       </TrashCanContainer>
       <FolderContainer>
         <Folder name={'about'} onClick={() => setAboutClosed(false)} />
-        <Folder name={'audioreact.mov'} onClick={() => setVideoReelClosed(false)} />
+        <Folder name={'audioreact.mov'} onClick={() => setVideoClosed(false)} />
         <Folder name={'lena.jpg'} onClick={() => setLenaClosed(false)} />
       </FolderContainer>
 
 
       <About close={aboutClosed} setClose={setAboutClosed}/>
-      <VideoReel close={videoReelClosed} setClose={setVideoReelClosed} />
+      <Video close={videoClosed} setClose={setVideoClosed} />
       <Lena close={lenaClosed} setClose={setLenaClosed} />
     </Page>
   )

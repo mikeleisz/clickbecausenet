@@ -4,16 +4,14 @@ import { Window } from './Window'
 
 const Video = ({ setClose, close }) => {
   return (
-    <Window title={"inefcoupe.mov"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
+    <Window title={"audioreact.mov"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
       <EmbedContainer>
         <iframe
-          src="https://player.vimeo.com/video/318686868"
+          src="https://player.vimeo.com/video/380100983"
           frameborder="0"
           webkitAllowFullScreen
           mozallowfullscreen
           allowFullScreen
-          width="640"
-          height="640"
         ></iframe>
       </EmbedContainer>
     </Window>

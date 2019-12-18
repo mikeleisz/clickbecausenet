@@ -8,7 +8,7 @@ function About({ setClose, close }) {
       <AboutText>
         <p>I'm Mike Leisz, a Los Angeles based artist, educator, and creative developer.</p>
         <p>With 10+ years experience in digital media, I provide technical direction, creative strategy, software development, and motion design for clients like Getty, Red Bull Music, The City of Los Angeles, and DJ Madeon.</p>
-        <p>I currently teach at Calarts in the Music Technology department.</p>
+        <p>I currently teach at CalArts in the Music Technology department.</p>
         <p>In my spare time, I'm developing an audio reactive videogame for the Nintendo Switch.</p>
         <br></br>
         <p>If you'd like to hire me or just say hi: 
@@ -26,6 +26,7 @@ function About({ setClose, close }) {
 
 const AboutText = styled.div`
   font-family: fairfax;
+  line-height: 1.2;
 `
 
 export { About }
