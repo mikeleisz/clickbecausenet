@@ -15,6 +15,12 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
   const contentRef = useRef()
 
   useEffect(() => {
+    if (!close) {
+      focus(title)
+    }
+  }, [close])
+
+  useEffect(() => {
     setContentHeight(contentRef.current.offsetHeight)
     setContentWidth(contentRef.current.offsetWidth)
   }, [files])
@@ -92,6 +98,7 @@ const Btn = styled.div`
   margin: 4px;
   transition: all 0.3s ease-out;
   flex-shrink: 0;
+  z-index: 2;
 
   &:last-of-type {
     margin-right: 12px;
