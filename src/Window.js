@@ -9,8 +9,9 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
   const [contentHeight, setContentHeight] = useState(0)
   const [contentWidth, setContentWidth] = useState(0)
   const [dragging, setDragging] = useState(false)
+  const [index, setIndex] = useState(2)
 
-  const { focus, focusedFile, files } = useContext(FileContext)
+  const { focus, focusedFile, files, highIndex } = useContext(FileContext)
 
   const contentRef = useRef()
 
@@ -19,6 +20,12 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
       focus(title)
     }
   }, [close])
+
+  useEffect(() => {
+    if (focusedFile == title) {
+      setIndex(highIndex)
+    }
+  }, [title, highIndex, focusedFile])
 
   useEffect(() => {
     setContentHeight(contentRef.current.offsetHeight)
@@ -37,7 +44,6 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
       animate={{
         scale: close ? 0 : maximised ? 1.25 : 1,
         marginBottom: minimised ? contentHeight : 16,
-        zIndex: focusedFile == title ? 100 : 1,
         transition: {
           marginBottom: {
             duration: 0
@@ -49,7 +55,7 @@ const Window = ({ close, setClose, children, style, title, containerStyle, offse
         focus(title)
       }}
       onDragEnd={() => setDragging(false)}
-      style={{ ...containerStyle, ...(minimised && { width: contentWidth }) }}
+      style={{ ...containerStyle, ...(minimised && { width: contentWidth }), zIndex: index }}
     >
       <TopBar style={{ width: contentWidth }}>
         <WindowTitle>{title}</WindowTitle>

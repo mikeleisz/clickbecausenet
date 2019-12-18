@@ -15,11 +15,12 @@ const FileProvider = ({ children }) => {
         case 'FOCUS':
           return {
             ...state,
-            focusedFile: action.name
+            focusedFile: action.name,
+            highIndex: action.name !== state.focusedFile ? state.highIndex + 1 : state.highIndex
           }
       }
     },
-    { files: [], focusedFile: null }
+    { files: [], focusedFile: null, highIndex: 3 }
   )
 
   const exposed = {
@@ -27,7 +28,8 @@ const FileProvider = ({ children }) => {
     addFile: file => dispatch({ type: 'ADD_FILE', file }),
     removeFile: name => dispatch({ type: 'REMOVE_FILE', name }),
     focus: name => dispatch({ type: 'FOCUS', name }),
-    focusedFile: state.focusedFile
+    focusedFile: state.focusedFile,
+    highIndex: state.highIndex
   }
 
   return <FileContext.Provider value={exposed}>{children}</FileContext.Provider>
