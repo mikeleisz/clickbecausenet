@@ -8,7 +8,7 @@ function Lena ({ setClose, close }){
 	useEffect(() => runLossy(canvas), [])
 	return (
 		<Window title="lena.jpg" close={close} setClose={setClose} containerStyle={{ width: "256px"}} style={{padding: 0, paddingTop: '32px'}}>
-			<Canvas width="256px" height="256px" ref={canvas} id='lossy'></Canvas>
+			<Canvas width="128px" height="128px" ref={canvas} id='lossy'></Canvas>
 		</Window>
 	)
 }
