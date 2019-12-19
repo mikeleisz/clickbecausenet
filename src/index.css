@@ -18,6 +18,7 @@ body {
   font-family: chicago, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
@@ -25,5 +26,5 @@ code {
 }
 
 a:visited {
-	color: magenta;
+  color: magenta;
 }

@@ -35,10 +35,13 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
     }
   }, [files])
 
+  const boundsRef = useRef(document.body)
+
   return (
     <WindowContainer
       drag
       dragMomentum={false}
+      dragConstraints={{ top: 0, left: 0, right: window.innerWidth - 100 }}
       initial={{
         x: Math.random() * (randomOffset !== undefined ? randomOffset : 50),
         scale: 0

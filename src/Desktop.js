@@ -1,17 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import styled from 'styled-components'
 import { FileContext } from './FileContext'
 import { Folder } from './Folder'
+import { iconForFile } from './icons'
 
 const Desktop = () => {
   const { files } = useContext(FileContext)
 
+  const boundsRef = useRef()
   return (
-    <DesktopContainer>
+    <DesktopContainer ref={boundsRef} id="desktop">
       {files
         .filter(f => f.folder === 'desktop')
         .map(file => (
-          <Folder key={file.name} name={file.name} onClick={() => file.setClosed(false)} />
+          <Folder
+            key={file.name}
+            boundsRef={boundsRef}
+            name={file.name}
+            onClick={() => file.setClosed(false)}
+            icon={iconForFile(file)}
+          />
         ))}
     </DesktopContainer>
   )

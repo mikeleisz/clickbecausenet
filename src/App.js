@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { FileProvider } from './FileContext'
 import { About } from './About'
 import { Trashcan } from './TrashCan'
+import { Folder } from './Folder'
 import { Lena } from './Lena'
 import { File } from './File'
 import { Desktop } from './Desktop'
@@ -18,12 +19,12 @@ const App = () => {
   useEffect(() => {
     console.log('h', aboutHeight)
   }, [aboutHeight])
+
   return (
     <FileProvider>
       <Desktop />
       <TrashCanContainer>
-        <Trashcan />
-        <p>important files</p>
+        <Folder name="important files" icon={<Trashcan />} />
       </TrashCanContainer>
       <Page>
         <h1>clickbecause.net</h1>
@@ -50,6 +51,7 @@ const App = () => {
           width="256px"
           height="256px"
         />
+
         <CanvasFile name="p555.js" width="200px" height="200px" isP5={true} folder="sketches" />
 
         <CanvasFile name="threee.js" width="200px" height="200px" folder="sketches" />
@@ -70,15 +72,10 @@ const App = () => {
   )
 }
 
-const TrashCanContainer = styled(m.button)`
+const TrashCanContainer = styled.div`
   position: absolute;
   bottom: 10vh;
   right: 32px;
-  text-align: center;
-  font-family: sans-serif;
-  background: transparent;
-  border: none;
-
   margin-right: 8px;
 `
 

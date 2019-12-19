@@ -2,6 +2,7 @@ import React, { useContext, useRef } from 'react'
 import styled from 'styled-components'
 import { FileContext } from './FileContext'
 import { Folder } from './Folder'
+import { iconForFile } from './icons'
 
 const FileContainer = ({ name }) => {
   const { files } = useContext(FileContext)
@@ -12,7 +13,13 @@ const FileContainer = ({ name }) => {
       {files
         .filter(f => f.folder === name)
         .map(file => (
-          <Folder key={file.name} name={file.name} onClick={() => file.setClosed(false)} boundsRef={containerRef} />
+          <Folder
+            key={file.name}
+            name={file.name}
+            onClick={() => file.setClosed(false)}
+            boundsRef={containerRef}
+            icon={iconForFile(file)}
+          />
         ))}
     </Container>
   )

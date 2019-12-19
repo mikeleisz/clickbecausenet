@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
-import { FolderIcon } from './FolderIcon'
+import { FolderIcon } from './icons/FolderIcon'
 
-const Folder = ({ name, onClick, boundsRef }) => {
+const Folder = ({ name, onClick, boundsRef, icon }) => {
   const [isDragging, setIsDragging] = useState(false)
   return (
     <Btn
@@ -15,7 +15,7 @@ const Folder = ({ name, onClick, boundsRef }) => {
       dragElastic={0}
       onClick={() => !isDragging && onClick()}
     >
-      <FolderIcon />
+      {icon || <FolderIcon />}
       {name}
     </Btn>
   )
