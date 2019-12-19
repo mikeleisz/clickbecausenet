@@ -1,28 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Window } from './Window'
+import { motion as m } from 'framer-motion'
+import { DummyLoader } from './DummyLoader'
 
-const Video = ({ setClose, close }) => {
+const Video = ({ videoId, aspect }) => {
+  const [loaded, setLoaded] = useState(false)
+
   return (
-    <Window title={"audioreact.mov"} setClose={setClose} close={close} style={{ margin: 0, padding: 0, paddingTop: '32px' }}>
-      <EmbedContainer>
+    <EmbedContainer invertedAspect={1 / aspect}>
+      {loaded ? (
         <iframe
-          src="https://player.vimeo.com/video/380100983"
-          frameborder="0"
-          webkitAllowFullScreen
-          mozallowfullscreen
-          allowFullScreen
+          id={`video-${videoId}`}
+          title={videoId}
+          src={`https://player.vimeo.com/video/${videoId}`}
+          frameBorder={0}
+          webkitallowfullscreen="true"
+          mozallowfullscreen="true"
+          allowFullScreen={true}
         ></iframe>
-      </EmbedContainer>
-    </Window>
+      ) : (
+        <DummyLoader wait={500} setDone={setLoaded} />
+      )}
+      <Overlay
+        animate={{ backgroundColor: loaded ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 1)' }}
+        transition={{ ease: 'easeOut', delay: 0.5, duration: 0.5 }}
+        className="overlay"
+      />
+    </EmbedContainer>
   )
 }
 
 export { Video }
 
+const Overlay = styled(m.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: white;
+  pointer-events: none;
+`
+
 const EmbedContainer = styled.div`
   position: relative;
-  padding-bottom: 56.25%;
+  padding-bottom: ${props => props.invertedAspect * 100}%;
   height: 0;
   overflow: hidden;
   max-width: 100%;

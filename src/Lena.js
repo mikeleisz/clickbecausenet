@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Window } from './Window'
-import { runLossy } from './lossy'
+import { runLossy } from './sketches/lossy'
 
 function Lena ({ setClose, close }){
 	const canvas = useRef()
@@ -13,12 +13,10 @@ function Lena ({ setClose, close }){
 	)
 }
 
-
 const Canvas = styled.canvas`
-	height: 256px;
-	width: 256px;
-	padding: 0;
-	margin: 0;
-
+  height: 256px;
+  width: 256px;
+  padding: 0;
+  margin: 0;
 `
 export { Lena }

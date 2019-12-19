@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
-import { FolderIcon } from './FolderIcon'
+import { FolderIcon } from './icons/FolderIcon'
 
-const Folder = ({ name, onClick }) => {
+const Folder = ({ name, onClick, boundsRef, icon }) => {
   const [isDragging, setIsDragging] = useState(false)
   return (
     <Btn
@@ -11,9 +11,11 @@ const Folder = ({ name, onClick }) => {
       onDragStart={() => setIsDragging(true)}
       onDragEnd={() => setTimeout(() => setIsDragging(false), 100)}
       dragMomentum={false}
+      dragConstraints={boundsRef ? boundsRef : false}
+      dragElastic={0}
       onClick={() => !isDragging && onClick()}
     >
-      <FolderIcon />
+      {icon || <FolderIcon />}
       {name}
     </Btn>
   )
