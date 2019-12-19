@@ -20,13 +20,13 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
 
   const contentRef = useRef()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (offset) {
       y.set(offset)
     }
   }, [offset])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!close || maximised) {
       focus(title)
     }
@@ -38,7 +38,7 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
     }
   }, [title, highIndex, focusedFile])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const observer = new ResizeObserver(entries => {
       for (let entry of entries) {
         if (entry.target.offsetWidth > 0) {
@@ -57,6 +57,16 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
     observer.observe(contentRef.current)
   }, [])
 
+  useLayoutEffect(() => {
+    if (close) {
+      controls.start({ scale: 0 })
+    } else if (maximised) {
+      controls.start({ scale: 1.25 })
+    } else {
+      controls.start({ scale: 1 })
+    }
+  }, [close, maximised])
+
   return (
     <WindowContainer
       initial={{
@@ -64,13 +74,7 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
         scale: 0
       }}
       animate={controls}
-      transition={{
-        marginBottom: {
-          duration: 0
-        }
-      }}
       style={{
-        scale: close ? 0 : maximised ? 1.25 : 1,
         marginBottom: minimised ? contentHeight : 16,
         x,
         y,
@@ -96,7 +100,12 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
         <WindowTitle contentWidth={contentWidth}>{title}</WindowTitle>
         <Maximise onClick={() => setMaximised(!maximised)} />
         <Minimise onClick={() => setMinimised(!minimised)} />
-        <Close onClick={() => setClose(true)} />
+        <Close
+          onClick={() => {
+            setMaximised(false)
+            setClose(true)
+          }}
+        />
       </TopBar>
       <WindowContent
         ref={contentRef}

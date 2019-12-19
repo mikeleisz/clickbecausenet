@@ -16,10 +16,6 @@ import './App.css'
 const App = () => {
   const [aboutHeight, setAboutHeight] = useState()
 
-  useEffect(() => {
-    console.log('h', aboutHeight)
-  }, [aboutHeight])
-
   return (
     <FileProvider>
       <Desktop />
@@ -28,6 +24,7 @@ const App = () => {
       </TrashCanContainer>
       <Page>
         <h1>clickbecause.net</h1>
+
 
         <File setHeight={setAboutHeight} name="about.txt" openOnLoad={true} randomOffset={0} openOrder={3}>
           <About />

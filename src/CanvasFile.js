@@ -3,20 +3,17 @@ import { motion as m } from 'framer-motion'
 import styled from 'styled-components'
 import { File } from './File'
 import * as sketch from './sketches'
+import { DummyLoader } from './DummyLoader'
 
-const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5 }) => {
+const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5, openOrder }) => {
   const w = width || '500px'
   const h = height || '500px'
 
   const sketchName = name.split('.')[0].toLowerCase()
-
-  const [waitingForP5, setWaitingForP5] = useState(true)
+  const [loaded, setLoaded] = useState(false)
 
   const canvasRef = useRef()
-  const timeoutRef = useRef()
   const closedRef = useRef()
-
-  const p5WaitTime = 3000
 
   useEffect(() => {
     const sketchContext = {
@@ -26,21 +23,13 @@ const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5 }) =
       height: parseInt(h),
       closed: closedRef
     }
-    if (isP5) {
-      setWaitingForP5(true)
-      timeoutRef.current = setTimeout(() => {
-        sketch[sketchName](sketchContext)
-        setWaitingForP5(false)
-      }, p5WaitTime)
-    } else {
-      sketch[sketchName](sketchContext)
-    }
 
-    return () => timeoutRef.current && clearTimeout(timeoutRef.current)
+    sketch[sketchName](sketchContext)
   }, [])
 
   return (
     <File
+      openOrder={openOrder}
       name={name}
       style={{ padding: 0, marginTop: '32px', width: w, height: h }}
       folder={folder}
@@ -49,13 +38,7 @@ const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5 }) =
       onChangeClose={close => (closedRef.current = close)}
     >
       {isP5 ? (
-        <P5Container style={{ width: w, height: h }} id={sketchName}>
-          {waitingForP5 && (
-            <Loader>
-              <Progress initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: p5WaitTime * 0.001 }} />
-            </Loader>
-          )}
-        </P5Container>
+        <P5Container style={{ width: w, height: h }} id={sketchName} />
       ) : (
         <canvas style={{ pointerEvents: 'all' }} ref={canvasRef} width={w} height={h} id={sketchName} />
       )}

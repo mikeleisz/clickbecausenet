@@ -29,7 +29,7 @@ const File = ({
 
   useEffect(() => {
     if (closed && openOnLoad) {
-      timeoutRef.current = setTimeout(() => setClosed(false), openOrder * 50)
+      timeoutRef.current = setTimeout(() => setClosed(false), openOrder * 100)
     }
 
     return () => timeoutRef.current && clearTimeout(timeoutRef.current)
