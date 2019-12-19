@@ -93,6 +93,8 @@ const WindowTitle = styled.div`
   width: 100%;
   text-align: center;
 
+  font-size: 92%;
+
   color: white;
 `
 
@@ -138,7 +140,7 @@ const WindowContainer = styled(m.div)`
   min-height: 32px;
   min-width: 200px;
 
-  margin-left: 8px;
+  margin-left: 4px;
 `
 
 const TopBar = styled.div`
