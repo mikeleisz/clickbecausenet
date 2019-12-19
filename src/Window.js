@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, useRef, useContext } from 
 import ResizeObserver from 'resize-observer-polyfill'
 import { FileContext } from './FileContext'
 import styled from 'styled-components'
-import { motion as m } from 'framer-motion'
+import { motion as m, useMotionValue } from 'framer-motion'
 
 const Window = ({ setHeight, randomOffset, close, setClose, children, style, title, containerStyle, offset }) => {
   const [minimised, setMinimised] = useState(false)
@@ -13,6 +13,9 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
   const [index, setIndex] = useState(2)
 
   const { focus, focusedFile, files, highIndex } = useContext(FileContext)
+
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
 
   const contentRef = useRef()
 
@@ -49,9 +52,6 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
 
   return (
     <WindowContainer
-      drag
-      dragMomentum={false}
-      dragConstraints={{ top: 0, left: 0, right: window.innerWidth - 100 }}
       initial={{
         x: Math.random() * (randomOffset !== undefined ? randomOffset : 50),
         scale: 0
@@ -66,14 +66,24 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
           }
         }
       }}
-      onDragStart={() => {
-        setDragging(true)
-        focus(title)
-      }}
-      onDragEnd={() => setDragging(false)}
-      style={{ ...containerStyle, ...(minimised && { width: contentWidth }), zIndex: index }}
+      style={{ x, y, ...containerStyle, ...(minimised && { width: contentWidth }), zIndex: index }}
     >
-      <TopBar style={{ width: contentWidth }}>
+      <TopBar
+        drag
+        _dragValueX={x}
+        _dragValueY={y}
+        dragMomentum={false}
+        dragConstraints={{ top: 0, left: 0, right: window.innerWidth - 100 }}
+        onDragStart={() => {
+          setDragging(true)
+          focus(title)
+        }}
+        onDragEnd={() => setDragging(false)}
+        style={{ width: contentWidth }}
+        // onTapStart={e => startDrag(e)}
+        // onTapCancel={() => stopDrag()}
+        // onTap={() => stopDrag()}
+      >
         <WindowTitle contentWidth={contentWidth}>{title}</WindowTitle>
         <Maximise onClick={() => setMaximised(!maximised)} />
         <Minimise onClick={() => setMinimised(!minimised)} />
@@ -82,6 +92,7 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
       <WindowContent
         ref={contentRef}
         className="content"
+        drag={false}
         style={{
           ...style,
           display: minimised ? 'none' : 'block',
@@ -154,7 +165,7 @@ const WindowContainer = styled(m.div)`
   margin-left: 4px;
 `
 
-const TopBar = styled.div`
+const TopBar = styled(m.div)`
   position: absolute;
   top: 0;
   left: 0;
