@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
 import { DummyLoader } from './DummyLoader'
 
-const Video = ({ videoId, aspect, setIframe }) => {
+const Video = ({ videoId, aspect }) => {
   const [loaded, setLoaded] = useState(false)
 
   return (

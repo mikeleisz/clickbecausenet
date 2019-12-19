@@ -1,0 +1,102 @@
+Common Imports
+  React - Base lib, does lots. Also needed anytime you want to use HTML type syntax in JS
+
+  useState - React state management, creates variables that things can react to
+
+  useEffect/useLayoutEffect - used to watch changes in variables, accepts a function and an array of deps, will function will be called anytime one of the deps changes
+
+  useRef - Used to hang on to a variable that isn't reactive. Mostly used for referncing things in the dom, or interfacing between react and non react things. Store data in ref.current
+
+  styled - css library
+  motion - prepend on a tag to give it all the fancy animation props ( usually shorted to m )
+
+
+App
+  Main function of the app. Root level code. 
+
+CanvasFile
+  props
+    name, folder, openOnLoad, openOrder, offset, onChangeClose - passed to file
+    width, height - self explanitory, passed to canvas and sketch
+    isP5 - p5 can't needs to create its own canvas so we need to handle it differently
+
+  Loads a function from the /sketches folder based on its name prop. Function recieves as arguments
+    name: the name of the sketch and ID of the p5 container
+    canvas: a reference to the canvas if available
+    width/height: self explanitory
+    closed: a ref object whose current key will be true if the window containing the sketch is closed. Can be used to stop render loops when windows aren't visible
+
+Desktop - A special file container for the desktop
+
+DummyLoader
+  props
+    wait - time to wait for in ms
+    setDone - a function to call when the timeout is done 
+    visible - should the loader be visible, or just a timer with no UI
+
+  I found it be useful to hold delay certain operations ( p5 creating a canvas, iframe initialization ) for a few hundren ms while the initial window opening animation plays on page load. This is really just a timer that can also render a little black bar loader if needed.
+  
+File
+  props
+    setHeight, randomOffset, style, containerStyle, offset - Passed to Window
+    onChangeClose - Function called when the close state changed, used to allow parents of file to know if their child files are closed or not. Right now used to pause videos when the files are closed.
+    openOrder - Constant multiplier for the initial window opening animation
+    name - Window and File name
+    folder - Which file container should we attach this file to ( desktop by default )
+    openOnLoad - should we open this window on load or wait until a file is clicked
+
+FileContainer
+  props
+    name - the name of the file container ( used to attach files to it )
+  
+  Renders files that whose folder prop matches the containers name prop. Wrap it in a file to create an openable folder with more files in it
+
+
+FileContext
+  Contexts allow you to share data between components who can't talk via props ( they are not in the same tree ). We use this one to keep track of all the Files we have created and which one is focused. State is tracked in the reducer and exposed via the `exposed` object. Access with `const { files } = useContext(FileContext)`.
+
+
+Folder
+  props
+    name - Name rendered to screen
+    onClick - function to call when clicked
+    boundsRef - a ref to an element which the folder can be dragged outside of ( so you cant drag a file outside its folder )
+    icon - Which icon should we render
+
+  Badly named component that represents an icon. Probably don't need to manually create these, creating file objects creates the needed folder automatically.
+  
+
+Video
+  props
+    videoId - vimeo video id to load
+    aspect - aspect ratio of the video 
+
+  Basic video rendering component. Uses the dummy loader to delay loading the iframe for 500ms so that animations can play out.
+
+VideoFile
+  props
+    name, folder, openOnLoad, offset - passed to file
+    aspect, videoId - passed to video
+    width - used to set width of the file container. Height will be set automatically based on width and aspect ratio
+
+  Creates the whole video file package
+
+
+Window
+  props
+    setHeight - Function to call when we know our contents height ( used to determine height offsets and keep the initial page looking nice )
+    randomOffset - randomness in pixels for the initial location ( multiplied by math.random )
+    close - is the window closed
+    setClose - set the close variable
+    style - style rules for the window content ( not top bar )
+    title - window title
+    containerStyle - style rules for the window container
+    offset - initial Y offset on page
+
+  This component is getting pretty messy. Lots of gnarly draging and focus stuff in here. Not really sure where to start...
+
+
+Icons
+  To create new icons copy the SVG code into the return of a new react component. Some things may not be 1 to 1 translations. Style can't be a string so needs to be converted to an object, or indervidual styles can applied as props ( see videoicon vs the original svg ). You can use svg as images without this hassle, but if we want to do animations with the svg down the line its easier to have it in react world.
+
+  Once you've added a new file icon, add it to the icons/index and iconForFile functions iconMap.

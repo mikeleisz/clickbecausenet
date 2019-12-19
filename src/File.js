@@ -12,7 +12,6 @@ const File = ({
   folder,
   openOnLoad,
   offset,
-  focusOnLoad,
   onChangeClose,
   openOrder
 }) => {
