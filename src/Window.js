@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useRef, useContext } from 'react'
+import ResizeObserver from 'resize-observer-polyfill'
 import { FileContext } from './FileContext'
 import styled from 'styled-components'
 import { motion as m } from 'framer-motion'
@@ -28,14 +29,23 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
   }, [title, highIndex, focusedFile])
 
   useEffect(() => {
-    setContentHeight(contentRef.current.offsetHeight)
-    setContentWidth(contentRef.current.offsetWidth)
-    if (setHeight) {
-      setHeight(contentRef.current.offsetHeight)
-    }
-  }, [files])
+    const observer = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        if (entry.target.offsetWidth > 0) {
+          setContentHeight(entry.target.offsetHeight)
+        }
 
-  const boundsRef = useRef(document.body)
+        if (entry.target.offsetHeight > 0) {
+          setContentWidth(entry.target.offsetWidth)
+          if (setHeight) {
+            setHeight(entry.target.offsetHeight)
+          }
+        }
+      }
+    })
+
+    observer.observe(contentRef.current)
+  }, [])
 
   return (
     <WindowContainer
@@ -71,6 +81,7 @@ const Window = ({ setHeight, randomOffset, close, setClose, children, style, tit
       </TopBar>
       <WindowContent
         ref={contentRef}
+        className="content"
         style={{
           ...style,
           display: minimised ? 'none' : 'block',
@@ -147,7 +158,7 @@ const TopBar = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  // width: 100%;
   height: 32px;
   display: flex;
   justify-content: flex-end;
