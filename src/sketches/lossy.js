@@ -15,8 +15,8 @@ function runLossy({ canvas }) {
     reversed_base64_map[val] = key
   })
 
-  var mouseX = 1
-  var mouseY = 1
+  var mouseX = 0
+  var mouseY = 0
 
   var markers = []
   var segments = []
@@ -95,21 +95,14 @@ function runLossy({ canvas }) {
       quality = Math.random()
     }
 
-    if (Math.random() < 0.25) {
-      var rnd = Math.floor(jpg_header_length + Math.random() * (bytes.length - jpg_header_length - 4))
-      //bytes[rnd] = Math.floor(Math.random() * 256);
-    }
-
     if (Math.random() < 0.5) {
       qluma = markers[0] + Math.floor(Math.random() * (segments[0] - markers[0]))
       luma = parseInt(bytes[qluma])
-      //bytes[qluma] = Math.floor(Math.random() * 256);
     }
 
     if (Math.random() < 0.5) {
       qchroma = markers[1] + Math.floor(Math.random() * (segments[1] - markers[1]))
       chroma = parseInt(bytes[qchroma])
-      //bytes[qchroma] = Math.floor(Math.random() * 256);
     }
 
     luma = luma + lumaDir
@@ -127,30 +120,6 @@ function runLossy({ canvas }) {
     }
 
     bytes[qchroma] = chroma
-
-    //bytes[markers[2] + 3] = Math.floor(Math.random() * 256);
-
-    /*
-	if (Math.random() < 0.01){
-		var huffman1 = markers[3] + Math.floor(Math.random() * (segments[3] - markers[3]));
-		bytes[huffman1] = Math.floor(Math.random() * 16);
-	}
-
-	if (Math.random() < 0.01){
-		var huffman2 = markers[4] + Math.floor(Math.random() * (segments[4] - markers[4]));
-		bytes[huffman2] = Math.floor(Math.random() * 256);
-	}
-
-	if (Math.random() < 0.01){
-		var huffman3 = markers[5] + Math.floor(Math.random() * (segments[5] - markers[5]));
-		bytes[huffman3] = Math.floor(Math.random() * 16);
-	} 
-
-	if (Math.random() < 0.01){
-		var huffman4 = markers[6] + Math.floor(Math.random() * (segments[6] - markers[6]));
-		bytes[huffman4] = Math.floor(Math.random() * 256);
-	}
-	*/
 
     if (Math.random() < 0.75) {
       var sos = markers[7] + Math.floor(Math.random() * (segments[7] - markers[7]))
