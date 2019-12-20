@@ -49,12 +49,20 @@ const App = () => {
           height="256px"
         />
 
+        <VideoFile name="2phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" />
+        <VideoFile name="5K.mov" videoId={380068801} aspect={1} width={'50%'} folder="videos" />
+        <VideoFile name="skittles.mov" videoId={327851438} aspect={16 / 9} width={'70%'} folder="videos" />
+
+        <File name="videos">
+        <FileContainer name="videos" />
+        </File>
+
         {/* <CanvasFile name="p555.js" width="200px" height="200px" isP5={true} folder="sketches" /> */}
         {/*  */}
         {/* <CanvasFile name="threee.js" width="200px" height="200px" folder="sketches" /> */}
         {/*  */}
-        {/* <VideoFile name="two_phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" /> */}
-        {/* <VideoFile name="500.mov" videoId={380068801} aspect={1} width={'50%'} folder="videos" /> */}
+        {/* <VideoFile name="2phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" /> */}
+        {/* <VideoFile name="5K.mov" videoId={380068801} aspect={1} width={'50%'} folder="videos" /> */}
         {/* <VideoFile name="skittles.mov" videoId={327851438} aspect={16 / 9} width={'70%'} folder="videos" /> */}
         {/*  */}
         {/* <File name="videos"> */}
@@ -71,7 +79,7 @@ const App = () => {
 
 const TrashCanContainer = styled.div`
   position: absolute;
-  bottom: 10vh;
+  bottom: 0vh;
   right: 32px;
   margin-right: 8px;
 `
