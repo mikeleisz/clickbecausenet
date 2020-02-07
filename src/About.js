@@ -4,9 +4,9 @@ import styled from 'styled-components'
 function About() {
   return (
     <AboutText>
-      <p>Mike Leisz is a Los Angeles based artist, educator, and creative developer.</p>
-      <p>I make audio reactive video art, games, experiences, and performances.</p>
-      <p>I currently teach at CalArts in the Music Technology department.</p>
+      <p>Mike Leisz is a Los Angeles based artist, educator, and technical art director.</p>
+      <p>I'm currently working on <i>A (MOTH) in Relay</i>, a videogame about time travel and heartbreak.</p>
+      <p>I teach at CalArts in the Music Technology department.</p>
       <p>
         For inquiries about design, technical direction, code, art, or just to say hello:
         <a href="mailto:clickbecause@gmail.com?subject=Hi Mike">clickbecause@gmail.com</a>
