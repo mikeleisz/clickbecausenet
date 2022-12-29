@@ -13,8 +13,8 @@ function About() {
       </p>
       <p>
         More work @:
-        <a href="https://www.instagram.com/clickbecause/" target="_blank">
-          clickbecause
+        <a href="https://www.instagram.com/mikeleisz/" target="_blank">
+          mikeleisz
         </a>
       </p>
     </AboutText>
