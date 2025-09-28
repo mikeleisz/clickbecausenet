@@ -10,6 +10,7 @@ import { Desktop } from './Desktop'
 import { FileContainer } from './FileContainer'
 import { VideoFile } from './VideoFile'
 import { CanvasFile } from './CanvasFile'
+import { IframeFile } from './IframeFile'
 import { motion as m } from 'framer-motion'
 import './App.css'
 
@@ -47,6 +48,13 @@ const App = () => {
           offset={aboutHeight + 300}
           width="256px"
           height="256px"
+        />
+
+        <IframeFile
+          name="perfect-farmony.html"
+          url="https://mikeleisz.github.io/perfect-farmony/"
+          width="600px"
+          height="600px"
         />
 
         <VideoFile name="2phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" />

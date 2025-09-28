@@ -11,7 +11,8 @@ export const iconForFile = file => {
     mov: <VideoIcon />,
     jpeg: <ImageIcon />,
     js: <ImageIcon />,
-    glsl: <ImageIcon />
+    glsl: <ImageIcon />,
+    html: <FileIcon />
   }
 
   return iconsMap[file.name.split('.')[1]]
