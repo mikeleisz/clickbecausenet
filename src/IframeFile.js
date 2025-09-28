@@ -17,7 +17,7 @@ const IframeFile = ({ url, name, folder, openOnLoad, width, height, offset, open
     <File
       name={name}
       style={{ padding: 0, marginTop: '32px' }}
-      containerStyle={{ width: width || '80%', height: height || 'auto' }}
+      containerStyle={{ width: width || '80%' }}
       folder={folder}
       openOnLoad={openOnLoad}
       offset={offset}

@@ -53,8 +53,8 @@ const App = () => {
         <IframeFile
           name="perfect-farmony.html"
           url="https://mikeleisz.github.io/perfect-farmony/"
-          width="600px"
-          height="600px"
+          width="800px"
+          height="800px"
         />
 
         <VideoFile name="2phones.mov" videoId={380071795} aspect={1} width={'50%'} folder="videos" />
@@ -63,6 +63,12 @@ const App = () => {
 
         <File name="videos">
         <FileContainer name="videos" />
+        </File>
+
+        <IframeFile name="hellbreaker.html" url="https://itch.io/embed-upload/13350113?color=000000" width="480px" height="452px" folder="games" />
+
+        <File name="games">
+        <FileContainer name="games" />
         </File>
 
         {/* <CanvasFile name="p555.js" width="200px" height="200px" isP5={true} folder="sketches" /> */}
