@@ -12,6 +12,7 @@ import { VideoFile } from './VideoFile'
 import { CanvasFile } from './CanvasFile'
 import { IframeFile } from './IframeFile'
 import { motion as m } from 'framer-motion'
+import { TextContent } from './TextContent'
 import './App.css'
 
 const TrashCanComponent = () => {
@@ -86,7 +87,15 @@ const App = () => {
           <About />
         </File>
 
-        <IframeFile name="tumblr.html" url="https://clickbecause.tumblr.com" width="min(600px, 90vw)" height="min(800px, 80vh)" folder="important files"/>
+        <IframeFile name="tumblr.html" url="https://clickbecause.tumblr.com" width="min(600px, 90vw)" height="min(800px, 80vh)" visibleOnMobile={false} folder="important files"/>
+        
+        <File name="to-do.txt" folder="important files">
+        <TextContent content={`
+            <p><s>demo <i>hell breaker</i> at gdc</s></p>
+            <p><s>release <i>ormblok</i></s></p>
+            <p><s>finish website</s></p>
+          `} />
+        </File>
 
         <File name="important files" folder="hidden" containerStyle={{ width: 'min(350px, 90vw)' }}>
         <FileContainer name="important files" />
