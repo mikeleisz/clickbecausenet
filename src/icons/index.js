@@ -3,6 +3,8 @@ import { FileIcon } from './FileIcon'
 import { ImageIcon } from './ImageIcon'
 import { FolderIcon } from './FolderIcon'
 import { VideoIcon } from './VideoIcon'
+import { WebsiteIcon } from './WebsiteIcon'
+import { ExeIcon } from './ExeIcon'
 
 export const iconForFile = file => {
   const iconsMap = {
@@ -12,7 +14,8 @@ export const iconForFile = file => {
     jpeg: <ImageIcon />,
     js: <ImageIcon />,
     glsl: <ImageIcon />,
-    html: <FileIcon />
+    html: <WebsiteIcon />,
+    exe: <ExeIcon />
   }
 
   return iconsMap[file.name.split('.')[1]]

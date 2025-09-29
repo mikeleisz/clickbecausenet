@@ -26,6 +26,7 @@ const Btn = styled(m.button)`
 
   background: transparent;
   border: none;
+  margin-right: 20px;
 
   display: flex;
   flex-direction: column;

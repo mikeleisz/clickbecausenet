@@ -27,7 +27,10 @@ const FileContainer = ({ name }) => {
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   padding: 32px;
+  max-width: 400px;
+  gap: 16px;
 `
 
 export { FileContainer }
