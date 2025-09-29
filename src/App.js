@@ -56,20 +56,21 @@ const App = () => {
         <FileContainer name="videos" />
         </File>
 
-        <IframeFile name="hellbreaker.exe" url="https://itch.io/embed-upload/13350113?color=000000" width="480px" height="452px" folder="games" />
-        <IframeFile name="ormblok.exe" url="https://itch.io/embed-upload/14832480?color=100e29" width="480px" height="452px" folder="games" />
-        <IframeFile name="ride_or_die.exe" url="https://itch.io/embed-upload/6127785?color=ffffff" width="512px" height="500px" folder="games" />
-        <IframeFile name="taijitu.exe" url="https://itch.io/embed-upload/9314960?color=333333" width="600px" height="620px" folder="games" />
+        <IframeFile name="hellbreaker.exe" url="https://itch.io/embed-upload/13350113?color=000000" width="min(480px, 90vw)" height="min(452px, 80vh)" folder="games" />
+        <IframeFile name="ormblok.exe" url="https://itch.io/embed-upload/14832480?color=100e29" width="min(480px, 90vw)" height="min(452px, 80vh)" folder="games" />
+        <IframeFile name="ride_or_die.exe" url="https://itch.io/embed-upload/6127785?color=ffffff" width="min(512px, 90vw)" height="min(500px, 80vh)" folder="games" />
+        <IframeFile name="taijitu.exe" url="https://itch.io/embed-upload/9314960?color=333333" width="min(600px, 90vw)" height="min(620px, 80vh)" folder="games" />
 
-        <File name="games">
+        <File name="games" visibleOnMobile={false}>
         <FileContainer name="games" />
         </File>
 
         <IframeFile
           name="perfect-farmony.html"
           url="https://mikeleisz.github.io/perfect-farmony/"
-          width="800px"
-          height="800px"
+          width="min(800px, 90vw)"
+          height="min(800px, 80vh)"
+          visibleOnMobile={false}
         />
 
         <CanvasFile
@@ -85,9 +86,9 @@ const App = () => {
           <About />
         </File>
 
-        <IframeFile name="tumblr.html" url="https://clickbecause.tumblr.com" width="600px" height="800px" folder="important files"/>
+        <IframeFile name="tumblr.html" url="https://clickbecause.tumblr.com" width="min(600px, 90vw)" height="min(800px, 80vh)" folder="important files"/>
 
-        <File name="important files" folder="hidden" containerStyle={{ width: '350px' }}>
+        <File name="important files" folder="hidden" containerStyle={{ width: 'min(350px, 90vw)' }}>
         <FileContainer name="important files" />
         </File>
 

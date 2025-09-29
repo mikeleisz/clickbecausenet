@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { FileContext } from './FileContext'
 import { Window } from './Window'
+import { ResponsiveWrapper } from './components/ResponsiveWrapper'
 
 const File = ({
   setHeight,
@@ -13,7 +14,8 @@ const File = ({
   openOnLoad,
   offset,
   onChangeClose,
-  openOrder
+  openOrder,
+  visibleOnMobile = true
 }) => {
   const [closed, setClosed] = useState(true)
   const { addFile, removeFile } = useContext(FileContext)
@@ -35,23 +37,25 @@ const File = ({
   }, [])
 
   useEffect(() => {
-    addFile({ name, setClosed, folder: folder || 'desktop' })
+    addFile({ name, setClosed, folder: folder || 'desktop', visibleOnMobile })
     return () => removeFile(name)
   }, [])
 
   return (
-    <Window
-      setHeight={setHeight}
-      close={closed}
-      setClose={setClosed}
-      title={name}
-      style={style}
-      containerStyle={containerStyle}
-      offset={offset}
-      randomOffset={randomOffset}
-    >
-      {children}
-    </Window>
+    <ResponsiveWrapper visibleOnMobile={visibleOnMobile}>
+      <Window
+        setHeight={setHeight}
+        close={closed}
+        setClose={setClosed}
+        title={name}
+        style={style}
+        containerStyle={containerStyle}
+        offset={offset}
+        randomOffset={randomOffset}
+      >
+        {children}
+      </Window>
+    </ResponsiveWrapper>
   )
 }
 

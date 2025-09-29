@@ -29,7 +29,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 32px;
-  max-width: 400px;
+  max-width: min(400px, 90vw);
   gap: 16px;
 `
 

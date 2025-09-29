@@ -2,7 +2,7 @@ import React from 'react'
 import { File } from './File'
 import { IframeEmbed } from './IframeEmbed'
 
-const IframeFile = ({ url, name, folder, openOnLoad, width, height, offset, openOrder }) => {
+const IframeFile = ({ url, name, folder, openOnLoad, width, height, offset, openOrder, visibleOnMobile = true }) => {
   const onChangeClosed = closed => {
     if (closed) {
       const iframe = document.getElementById(`iframe-${name}`)
@@ -23,6 +23,7 @@ const IframeFile = ({ url, name, folder, openOnLoad, width, height, offset, open
       offset={offset}
       openOrder={openOrder}
       onChangeClose={onChangeClosed}
+      visibleOnMobile={visibleOnMobile}
     >
       <IframeEmbed url={url} width={width} height={height} name={name} />
     </File>

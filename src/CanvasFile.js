@@ -5,7 +5,7 @@ import { File } from './File'
 import * as sketch from './sketches'
 import { DummyLoader } from './DummyLoader'
 
-const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5, openOrder }) => {
+const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5, openOrder, visibleOnMobile = true }) => {
   const w = width || '500px'
   const h = height || '500px'
 
@@ -36,6 +36,7 @@ const CanvasFile = ({ name, folder, openOnLoad, width, height, offset, isP5, ope
       openOnLoad={openOnLoad}
       offset={offset}
       onChangeClose={close => (closedRef.current = close)}
+      visibleOnMobile={visibleOnMobile}
     >
       {isP5 ? (
         <P5Container style={{ width: w, height: h }} id={sketchName} />

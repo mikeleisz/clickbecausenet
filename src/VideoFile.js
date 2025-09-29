@@ -3,7 +3,7 @@ import Player from '@vimeo/player'
 import { File } from './File'
 import { Video } from './Video'
 
-const VideoFile = ({ aspect, videoId, name, folder, openOnLoad, width, offset }) => {
+const VideoFile = ({ aspect, videoId, name, folder, openOnLoad, width, offset, visibleOnMobile = true }) => {
   const onChangeClosed = closed => {
     if (closed) {
       const iframe = document.getElementById(`video-${videoId}`)
@@ -22,6 +22,7 @@ const VideoFile = ({ aspect, videoId, name, folder, openOnLoad, width, offset })
       openOnLoad={openOnLoad}
       offset={offset}
       onChangeClose={onChangeClosed}
+      visibleOnMobile={visibleOnMobile}
     >
       <Video videoId={videoId} aspect={aspect} />
     </File>
