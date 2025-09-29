@@ -87,7 +87,7 @@ const App = () => {
           <About />
         </File>
 
-        <IframeFile name="tumblr.html" url="https://clickbecause.tumblr.com" width="min(600px, 90vw)" height="min(800px, 80vh)" visibleOnMobile={false} folder="important files"/>
+        <IframeFile name="tumblr.html" url="https://clickbecause.tumblr.com" width="min(800px, 90vw)" height="min(800px, 80vh)" visibleOnMobile={false} folder="important files"/>
         
         <File name="to-do.txt" folder="important files">
         <TextContent content={`
